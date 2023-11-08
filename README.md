@@ -1,10 +1,5 @@
 # Linux
 
-## 常用软件
-
-- Blue man Bluetooth Manager `sudo apt install blueman`
-- [vlc video player](https://www.videolan.org/vlc/download-ubuntu.html)
-
 ## cpu
 
 ### 限定任务cpu使用率
