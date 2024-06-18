@@ -1,5 +1,100 @@
 # Linux
 
+<!-- TOC -->
+* [Linux](#linux)
+  * [cpu](#cpu)
+    * [限定任务cpu使用率](#限定任务cpu使用率)
+      * [临时任务](#临时任务)
+      * [长久任务](#长久任务)
+  * [文件和文件夹](#文件和文件夹)
+    * [万物都是文件](#万物都是文件)
+    * [Linux 常用 文件夹](#linux-常用-文件夹)
+  * [正则和文件处理](#正则和文件处理)
+    * [正则表达式](#正则表达式)
+    * [sed](#sed)
+    * [printf](#printf)
+    * [awk](#awk)
+    * [diff](#diff)
+    * [patch](#patch)
+  * [shell /bash](#shell-bash)
+    * [种类](#种类)
+    * [变量](#变量)
+      * [变量名](#变量名)
+      * [变量值](#变量值)
+      * [环境变量](#环境变量)
+    * [常用命令](#常用命令)
+    * [资源限制 ulimit](#资源限制-ulimit)
+    * [特殊字符](#特殊字符)
+    * [重定向 > >>](#重定向--)
+    * [多命令执行](#多命令执行)
+      * [cmd;cmd](#cmdcmd)
+      * [&& ||](#-)
+    * [管道 pipe](#管道-pipe)
+      * [cut](#cut)
+      * [sort](#sort)
+      * [uniq](#uniq)
+      * [wc](#wc)
+      * [tee](#tee)
+      * [文字处理](#文字处理)
+    * [编写shell](#编写shell)
+      * [基础语法](#基础语法)
+      * [sh 和 source 的区别](#sh-和-source-的区别)
+      * [判断](#判断)
+        * [test](#test)
+        * [[]](#)
+        * [if](#if)
+        * [case](#case)
+      * [预设变量](#预设变量)
+      * [function](#function)
+      * [循环](#循环)
+        * [while/until](#whileuntil)
+        * [for](#for)
+      * [sh](#sh)
+  * [user and group](#user-and-group)
+    * [uid and gid](#uid-and-gid)
+    * [/etc/passwd](#etcpasswd)
+    * [/etc/shadow](#etcshadow)
+    * [/etc/group](#etcgroup)
+    * [关系](#关系)
+    * [group](#group)
+      * [有效群组(effective group)与初始群组(initial group)](#有效群组effective-group与初始群组initial-group)
+      * [groupadd groupdel groupmod](#groupadd-groupdel-groupmod)
+    * [user](#user)
+      * [useradd userdel usermod passwd](#useradd-userdel-usermod-passwd)
+  * [ACL](#acl)
+    * [getfacl](#getfacl)
+    * [setfacl](#setfacl)
+  * [su and sudo](#su-and-sudo)
+    * [su](#su)
+    * [sudo](#sudo)
+      * [sudo 权限](#sudo-权限)
+  * [定时任务](#定时任务)
+    * [at](#at)
+    * [cron](#cron)
+    * [anacron](#anacron)
+  * [程序管理](#程序管理)
+    * [程序 program](#程序-program)
+    * [进程 process](#进程-process)
+      * [后台运行](#后台运行)
+      * [后台暂停](#后台暂停)
+      * [jobs](#jobs)
+      * [fg](#fg)
+      * [bg](#bg)
+      * [ps](#ps)
+      * [top](#top)
+      * [pstree](#pstree)
+      * [kill](#kill)
+      * [nohup](#nohup)
+      * [nice](#nice)
+      * [proc 文件夹](#proc-文件夹)
+        * [/proc/[pid]](#procpid)
+    * [服务 daemon](#服务-daemon)
+      * [systemd](#systemd)
+  * [多人多工](#多人多工)
+    * [多人](#多人)
+    * [多工](#多工)
+<!-- TOC -->
+
 ## cpu
 
 ### 限定任务cpu使用率
@@ -39,44 +134,6 @@ renice +10 6919
 ```shell
 sudo cgcreate -g cpu:/cpulimited
 sudo cgcreate -g cpu:/lesscpulimited
-```
-
-## 内存
-
-```shell
-# show ram info
-free -ht
-```
-
-|        | total | used  | free  | shared | buff/cache | available |
-|--------|-------|-------|-------|--------|------------|-----------|
-| Mem:   | 7.8Gi | 1.0Gi | 6.1Gi | 366Mi  | 624Mi      | 6.2Gi     |
-| Swap:  | 2.0Gi | 2.0Mi | 2.0Gi |        |            |           |
-| Total: | 9.8Gi | 1.0Gi | 8.1Gi |        |            |           |
-
-```shell
-# clear cache
-echo 3 > /proc/sys/vm/drop_caches
-```
-
-> To free page cache:<br>
-> echo 1 > /proc/sys/vm/drop_caches<br>
-> To free reclaimable slab objects (includes dentries and inodes):<br>
-> echo 2 > /proc/sys/vm/drop_caches<br>
-> To free slab objects and page cache:<br>
-> echo 3 > /proc/sys/vm/drop_caches
-
-### 交换分区 swap
-
-> 交换分区是一块磁盘空间，用于暂时存放内存中的数据，以便腾出内存空间给其他程序使用。
-
-```shell
-# show swap info
-swapon -s
-# 关闭交换分区
-swapoff -a
-# 注释掉swap
-sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
 ## 文件和文件夹
@@ -257,139 +314,7 @@ patch -p0 < txt.patch
 patch -p0 -R < txt.patch
 ```
 
-## 磁盘
 
-### df
-
-> 第1列是设备名
-> 第2列是磁盘总容量大小
-> 第3列是已使用容量大小
-> 第4列是剩余容量大小
-> 第5列容量已使用百分比
-> 第6列挂载点目录名称
-
-```shell
-# show disk info
-[root@dev163 _data]# df -h
-Filesystem               Size  Used Avail Use% Mounted on
-devtmpfs                 7.8G     0  7.8G   0% /dev
-tmpfs                    7.8G     0  7.8G   0% /dev/shm
-tmpfs                    7.8G  9.0M  7.8G   1% /run
-tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
-/dev/mapper/centos-root   40G   40G   44K 100% /
-/dev/sda1                497M  169M  328M  34% /boot
-/dev/mapper/centos-data  260G   54G  206G  21% /data
-overlay                  260G   54G  206G  21% /data/lib/docker/overlay2/b4262b4b82183c389399f6ab50228384d69e5e55a487b0270ec0b47e9031f59c/merged
-overlay                  260G   54G  206G  21% /data/lib/docker/overlay2/da377cff0ea3ddefa38a2500b57fe01d165bfd1f99c170a53f0d425149baa6f9/merged
-tmpfs                    1.6G     0  1.6G   0% /run/user/0
-```
-
-- `tmpfs`字样的是虚拟内存文件系统(此处不做展开);
-- 文件系统`/dev/mapper/centos-root`的挂载点是/(根目录)，即通常所说的根分区(或根文件系统);
-- `/dev/sda1`(boot分区)中保存了内核映像和一些启动时需要的辅助文件;
-- `overlay`[overlay文件系统](http://dockone.io/article/1511) 一般是 docker 容器在使用;
-
-### du
-
-- c或--total 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和;
-- s或--summarize 仅显示总计;
-- -h或--human-readable 以K，M，G为单位，提高信息的可读性;
-
-```shell
-# show dir var disk info
-du -sh /var/*
-# sort
-du -sh /var/* | sort -rh 
-```
-
-### 挂载磁盘
-
-```shell
-# 查看磁盘挂载情况
-lsblk
-
-# 查看磁盘详情
-sudo fdisk -l
-
-# 格式化磁盘 ext4
-sudo mkfs -t ext4 /dev/sdb
-
-# 挂载
-sudo mount /dev/sdb /data
-
-# 获取磁盘的UUID
-sudo blkid /dev/sdb
-
-# 重启自动挂载
-sudo vim /etc/fstab
-# 要填写file system、mount point、type、options、dump、pass等六项。
-# 其中mount point为我们的挂载点/data/；type为我们格式化的文件格式，ext4；options我们一般就是defaults；
-# dump都是0、pass也都是0，除非挂载点是/。
-UUID=38b045ea-0bcd-46dc-b5a2-76917a91d9fe /data/ ext4 defaults 0 0
-```
-
-### 链接 ln
-
-#### 硬连接
-
-```shell
-# 创建硬连接
-ln file1 file2
-# 查看硬连接数
-ls -l file1
-# 删除硬连接
-rm file2
-```
-
-##### 限制
-
-- 不能跨分区
-- 不能针对目录
-
-#### 软连接
-
-```shell
-# 创建软连接
-ln -s file1 file2
-# 目录
-ln -s /bin /root/bin
-# 查看软连接
-ls -l file2
-# 删除软连接
-rm file2
-```
-
-## 网络
-
-### 端口
-
-```shell
-# show port info
-# 选项与参数：
-# -a ：将目前系统上所有的连线、监听、Socket 资料都列出来
-# -t ：列出tcp 网路封包的资料
-# -u ：列出udp 网路封包的资料
-# -n ：不以程序的服务名称，以埠号(port number) 来显示；
-# -l ：列出目前正在网路监听(listen) 的服务；
-# -p ：列出该网路服务的程序PID
-netstat -tunlp
-# netcat
-# 扫描 端口范围
-nc -z -v -w2 -u 127.0.0.1 1-65535
-```
-
-### hostname
-
-- static hostname: 主机名
-- pretty hostname: 主机别名
-- transient hostname: 临时主机名。通常是 DHCP 分配的主机名，
-
-```shell
-# show hostname
-hostname
-# set hostname
-hostnamectl set-hostname newname
-```
 
 ## shell /bash
 
@@ -1173,6 +1098,7 @@ sudo -u dmtsai -s -c "ls -l"
 ```
 
 #### sudo 权限
+
 - `visudo` 编辑sudo配置文件
 
 ```shell
