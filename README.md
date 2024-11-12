@@ -81,7 +81,6 @@
       * [fg](#fg)
       * [bg](#bg)
       * [ps](#ps)
-      * [top](#top)
       * [pstree](#pstree)
       * [kill](#kill)
       * [nohup](#nohup)
@@ -1281,52 +1280,6 @@ ps -T -p pid
 - %CPU：进程使用的CPU百分比
 - VSZ：进程使用的虚拟内存总量，单位kb
 - RSS：进程使用的、未被换出的物理内存大小，单位kb
-
-#### top
-
-```shell
-# top [-d 数字] | top [-bnp]
-# 选项与参数：
-# -d ：后面可以接秒数，就是整个程序画面更新的秒数。预设是5 秒；
-# -b ：以批次的方式执行top ，还有更多的参数可以使用喔！
-      # 通常会搭配资料流重导向来将批次的结果输出成为档案。
-# -n ：与-b 搭配，意义是，需要进行几次top 的输出结果。
-# -p ：指定某些个PID 来进行观察监测而已。
-# 在top 执行过程当中可以使用的按键指令：
-	# ? ：显示在top 当中可以输入的按键指令；
-	# P ：以CPU 的使用资源排序显示；
-	# M ：以Memory 的使用资源排序显示；
-	# N ：以PID 来排序喔！
-	# T ：由该Process 使用的CPU 时间累积(TIME+) 排序。
-	# k ：给予某个PID 一个讯号(signal)
-	# r ：给予某个PID 重新制订一个nice 值。
-	# q ：离开top 软体的按键。
-top -b -n 2 > top.log
-top -d 2 -p 14836
-# -H 现实线程
-top -H -p pid	
-```
-
-`top` 返回值
-
-<div>
-<p>
-top - 17:40:02（目前的时间） up 6 days, 6:36（开机到目前为止所经过的时间）, 1 user（已经登入系统的使用者人数）, load average: 0.00, 0.01, 0.05（系统在1, 5, 15 分钟的平均工作负载）
-</p>
-<p>
-Tasks:  94 total, 1 running, 93 sleeping, 0 stopped, 0 zombie (进程数)
-</p>
-<p>
-%Cpu(s):  0.2 us, 0.2 sy, 0.0 ni, 99.7 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 st （CPU）
-需要特别注意的是wa 项目，那个项目代表的是I/O wait， 通常你的系统会变慢都是I/O 产生的问题比较大！
-</p>
-<p>
-KiB Mem :  3879796 total, 2519060 free, 341088 used, 1019648 buff/cache （内存）
-</p>
-<p>KiB Swap:        0 total, 0 free, 0 used. 3302312 avail Mem （交换区）</p>
-<p>PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND</p>                                                                                                                               
-<p>28323 root 20 0 123288 38616 10996 S 0.3 1.0 7:16.66 python</p>
-</div>
 
 #### pstree
 
