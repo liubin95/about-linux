@@ -1,97 +1,99 @@
 # Linux
 
 <!-- TOC -->
+
 * [Linux](#linux)
-  * [cpu](#cpu)
-    * [限定任务cpu使用率](#限定任务cpu使用率)
-      * [临时任务](#临时任务)
-      * [长久任务](#长久任务)
-  * [文件和文件夹](#文件和文件夹)
-    * [万物都是文件](#万物都是文件)
-    * [Linux 常用 文件夹](#linux-常用-文件夹)
-  * [正则和文件处理](#正则和文件处理)
-    * [正则表达式](#正则表达式)
-    * [sed](#sed)
-    * [printf](#printf)
-    * [awk](#awk)
-    * [diff](#diff)
-    * [patch](#patch)
-  * [shell /bash](#shell-bash)
-    * [种类](#种类)
-    * [变量](#变量)
-      * [变量名](#变量名)
-      * [变量值](#变量值)
-      * [环境变量](#环境变量)
-    * [常用命令](#常用命令)
-    * [资源限制 ulimit](#资源限制-ulimit)
-    * [特殊字符](#特殊字符)
-    * [重定向 > >>](#重定向--)
-    * [多命令执行](#多命令执行)
-      * [cmd;cmd](#cmdcmd)
-      * [&& ||](#-)
-    * [管道 pipe](#管道-pipe)
-      * [cut](#cut)
-      * [sort](#sort)
-      * [uniq](#uniq)
-      * [wc](#wc)
-      * [tee](#tee)
-      * [文字处理](#文字处理)
-    * [编写shell](#编写shell)
-      * [基础语法](#基础语法)
-      * [sh 和 source 的区别](#sh-和-source-的区别)
-      * [判断](#判断)
-        * [test](#test)
-        * [[]](#)
-        * [if](#if)
-        * [case](#case)
-      * [预设变量](#预设变量)
-      * [function](#function)
-      * [循环](#循环)
-        * [while/until](#whileuntil)
-        * [for](#for)
-      * [sh](#sh)
-  * [user and group](#user-and-group)
-    * [uid and gid](#uid-and-gid)
-    * [/etc/passwd](#etcpasswd)
-    * [/etc/shadow](#etcshadow)
-    * [/etc/group](#etcgroup)
-    * [关系](#关系)
-    * [group](#group)
-      * [有效群组(effective group)与初始群组(initial group)](#有效群组effective-group与初始群组initial-group)
-      * [groupadd groupdel groupmod](#groupadd-groupdel-groupmod)
-    * [user](#user)
-      * [useradd userdel usermod passwd](#useradd-userdel-usermod-passwd)
-  * [ACL](#acl)
-    * [getfacl](#getfacl)
-    * [setfacl](#setfacl)
-  * [su and sudo](#su-and-sudo)
-    * [su](#su)
-    * [sudo](#sudo)
-      * [sudo 权限](#sudo-权限)
-  * [定时任务](#定时任务)
-    * [at](#at)
-    * [cron](#cron)
-    * [anacron](#anacron)
-  * [程序管理](#程序管理)
-    * [程序 program](#程序-program)
-    * [进程 process](#进程-process)
-      * [后台运行](#后台运行)
-      * [后台暂停](#后台暂停)
-      * [jobs](#jobs)
-      * [fg](#fg)
-      * [bg](#bg)
-      * [ps](#ps)
-      * [pstree](#pstree)
-      * [kill](#kill)
-      * [nohup](#nohup)
-      * [nice](#nice)
-      * [proc 文件夹](#proc-文件夹)
-        * [/proc/[pid]](#procpid)
-    * [服务 daemon](#服务-daemon)
-      * [systemd](#systemd)
-  * [多人多工](#多人多工)
-    * [多人](#多人)
-    * [多工](#多工)
+    * [cpu](#cpu)
+        * [限定任务cpu使用率](#限定任务cpu使用率)
+            * [临时任务](#临时任务)
+            * [长久任务](#长久任务)
+    * [文件和文件夹](#文件和文件夹)
+        * [万物都是文件](#万物都是文件)
+        * [Linux 常用 文件夹](#linux-常用-文件夹)
+    * [正则和文件处理](#正则和文件处理)
+        * [正则表达式](#正则表达式)
+        * [sed](#sed)
+        * [printf](#printf)
+        * [awk](#awk)
+        * [diff](#diff)
+        * [patch](#patch)
+    * [shell /bash](#shell-bash)
+        * [种类](#种类)
+        * [变量](#变量)
+            * [变量名](#变量名)
+            * [变量值](#变量值)
+            * [环境变量](#环境变量)
+        * [常用命令](#常用命令)
+        * [资源限制 ulimit](#资源限制-ulimit)
+        * [特殊字符](#特殊字符)
+        * [重定向 > >>](#重定向--)
+        * [多命令执行](#多命令执行)
+            * [cmd;cmd](#cmdcmd)
+            * [&& ||](#-)
+        * [管道 pipe](#管道-pipe)
+            * [cut](#cut)
+            * [sort](#sort)
+            * [uniq](#uniq)
+            * [wc](#wc)
+            * [tee](#tee)
+            * [文字处理](#文字处理)
+        * [编写shell](#编写shell)
+            * [基础语法](#基础语法)
+            * [sh 和 source 的区别](#sh-和-source-的区别)
+            * [判断](#判断)
+                * [test](#test)
+                * [[]](#)
+                * [if](#if)
+                * [case](#case)
+            * [预设变量](#预设变量)
+            * [function](#function)
+            * [循环](#循环)
+                * [while/until](#whileuntil)
+                * [for](#for)
+            * [sh](#sh)
+    * [user and group](#user-and-group)
+        * [uid and gid](#uid-and-gid)
+        * [/etc/passwd](#etcpasswd)
+        * [/etc/shadow](#etcshadow)
+        * [/etc/group](#etcgroup)
+        * [关系](#关系)
+        * [group](#group)
+            * [有效群组(effective group)与初始群组(initial group)](#有效群组effective-group与初始群组initial-group)
+            * [groupadd groupdel groupmod](#groupadd-groupdel-groupmod)
+        * [user](#user)
+            * [useradd userdel usermod passwd](#useradd-userdel-usermod-passwd)
+    * [ACL](#acl)
+        * [getfacl](#getfacl)
+        * [setfacl](#setfacl)
+    * [su and sudo](#su-and-sudo)
+        * [su](#su)
+        * [sudo](#sudo)
+            * [sudo 权限](#sudo-权限)
+    * [定时任务](#定时任务)
+        * [at](#at)
+        * [cron](#cron)
+        * [anacron](#anacron)
+    * [程序管理](#程序管理)
+        * [程序 program](#程序-program)
+        * [进程 process](#进程-process)
+            * [后台运行](#后台运行)
+            * [后台暂停](#后台暂停)
+            * [jobs](#jobs)
+            * [fg](#fg)
+            * [bg](#bg)
+            * [ps](#ps)
+            * [pstree](#pstree)
+            * [kill](#kill)
+            * [nohup](#nohup)
+            * [nice](#nice)
+            * [proc 文件夹](#proc-文件夹)
+                * [/proc/[pid]](#procpid)
+        * [服务 daemon](#服务-daemon)
+            * [systemd](#systemd)
+    * [多人多工](#多人多工)
+        * [多人](#多人)
+        * [多工](#多工)
+
 <!-- TOC -->
 
 ## cpu
@@ -312,8 +314,6 @@ patch -p0 < txt.patch
 # 还原
 patch -p0 -R < txt.patch
 ```
-
-
 
 ## shell /bash
 
@@ -928,192 +928,6 @@ exit 0
 # sh -x scriptname # 执行脚本并打印出每一行的命令 debug
 # sh -n scriptname # 检查脚本的语法是否正确
 # sh -v scriptname # 执行脚本并打印出每一行的命令 
-```
-
-## user and group
-
-### uid and gid
-
-> 一个是使用者 ID (User ID ，简称UID)、一个是群组ID (Group ID ，简称GID)。
-
-```shell
-# id  
-id liubin
-# uid=501(liubin) gid=20(staff) groups=20(staff),12(everyone),61(localaccounts),79(_appserverusr),80(admin),81(_appserveradm),98(_lpadmin),701(com.apple.sharepoint.group.1),33(_appstore),100(_lpoperator),204(_developer),250(_analyticsusers),395(com.apple.access_ftp),398(com.apple.access_screensharing),399(com.apple.access_ssh),400(com.apple.access_remote_ae)
-# 用户属于多个组
-```
-
-### /etc/passwd
-
-> /etc/passwd 文件是一个重要的文件，它存放了所有的使用者账号的相关信息，包括使用者的 UID、GID、家目录、shell 程式等等。<br>
-> 该文件的格式为：用户名:密码:UID:GID:用户信息:家目录:shell <br>
-> 不过需要特别留意的是，里头很多账号本来就是系统正常运作所必须要的，我们可以简称他为系统账号， 例如bin, daemon, adm, nobody
-> 等等，这些账号请不要随意的杀掉他呢！
-
-```shell
-# /etc/passwd
-# root:x:0:0:root:/var/root:/bin/bash
-# 用户名:密码:UID:GID:用户信息:家目录:shell
-```
-
-### /etc/shadow
-
-> /etc/shadow
->
-文件是一个重要的文件，它存放了所有的使用者账号的密码信息，包括使用者的密码、密码的有效期、密码的最小天数、密码的最大天数、密码的警告天数、密码的失效天数、密码的失效日期等等。<br>
-> 该文件的格式为：用户名:密码:最后一次修改密码的日期:密码的最小天数:密码的最大天数:密码的警告天数:密码的失效天数:
-> 密码的失效日期:保留<br>
-
-```shell
-# /etc/shadow
-# root:*:17600:0:99999:7:::
-# 用户名:密码:最后一次修改密码的日期:密码的最小天数:密码的最大天数:密码的警告天数:密码的失效天数:密码的失效日期:保留
-```
-
-### /etc/group
-
-> /etc/group 文件是一个重要的文件，它存放了所有的群组账号的相关信息，包括群组的 GID、群组的使用者等等。<br>
-> 该文件的格式为：群组名:密码:GID:群组使用者<br>
-
-```shell
-# /etc/group
-# root:*:0:
-# wheel:*:0:root,dmtsai,alex
-```
-
-### 关系
-
-<img src="./image/user1.png" alt="user">
-
-### group
-
-#### 有效群组(effective group)与初始群组(initial group)
-
-> 有效群组 (Effective Group ID)：是指用户目前所属的群组，这个群组是由用户的登录 shell
-> 所设定的，而不是由用户的账号所设定的。<br>
-> 初始群组 (Initial Group ID)：是指用户账号所属的群组，这个群组是由用户的账号所设定的，而不是由用户的登录 shell
-> 所设定的。<br>
-
-```shell
-groups
-# dmtsai wheel users
-# 第一个输出的群组即为有效群组(effective group) 了
-newgrp users
-# newgrp: only for login shell
-# 有效群组只能在登录shell中设置
-```
-
-#### groupadd groupdel groupmod
-
-```shell
-groupadd users
-# 创建群组
-groupdel users
-# 删除群组
-groupmod -n users wheel
-# 修改群组名
-# -n 新群组名
-```
-
-### user
-
-#### useradd userdel usermod passwd
-
-```shell
-useradd -m -g users -G wheel -s /bin/bash dmtsai
-# -m 创建用户的同时，创建用户的家目录
-# -g 指定用户的初始群组
-# -G 指定用户的附加群组
-# -s 指定用户的登录 shell
-# dmtsai 用户名
-userdel -r dmtsai
-# -r 删除用户的同时，删除用户的家目录
-usermod -g users -G wheel -s /bin/bash dmtsai
-# -a 附加群组
-# 修改用户密码
-passwd dmtsai
-# 要求用户修改密码
-chage -d 0 agetest 
-# 追加群组
-usermod -aG wheel dmtsai
-```
-
-## ACL
-
-> ACL (Access Control List)
-> 是一种访问控制机制，它允许用户或者群组对文件或者目录进行读、写、执行的权限控制，而不是简单的允许或者禁止。<br>
-
-### getfacl
-
-```shell
-getfacl /etc/passwd
-# file: etc/passwd
-# owner: root
-# group: wheel
-# user::rw-
-# group::r--
-# other::r--
-```
-
-### setfacl
-
-```shell
-setfacl -m u:admin:rw info.log.gz
-# -m 修改权限
-    # u:dmtsai:rw 用户dmtsai的权限为读写
-    # g:users:rw 群组users的权限为读写
-    # m:r 其他用户的权限为读
-    # d:u:admin:rx 预设权限
-# -b 删除权限
-# -R 递归修改
-getfacl info.log.gz
-# file: info.log.gz
-# owner: admin
-# group: admin
-# user::rw-
-# user:admin:rw-
-# group::rw-
-# mask::rw-
-# other::r--
-setfacl -mm:r info.log.gz
-```
-
-## su and sudo
-
-### su
-
-```shell
-su - dmtsai
-# - 切换到dmtsai用户
-# -l 切换到dmtsai用户并加载用户的环境变量 等于 -
-# -c 执行命令
-su -c "ls -l" dmtsai
-```
-
-### sudo
-
-```shell
-sudo -u dmtsai ls -l
-# -u 切换到dmtsai用户
-sudo -u dmtsai -s
-# -s 切换到dmtsai用户并加载用户的环境变量
-sudo -u dmtsai -s -c "ls -l"
-# -c 执行命令
-# sudo 没有u参数默认切换到root用户
-```
-
-#### sudo 权限
-
-- `visudo` 编辑sudo配置文件
-
-```shell
-# /etc/sudoers
-# root 用户可以执行所有命令
-# root ALL=(ALL) ALL
-# wheel group 都可以执行所有命令
-# %wheel ALL=(ALL) ALL
-# 不需要密码
-# %wheel ALL=(ALL) NOPASSWD: ALL
 ```
 
 ## 定时任务
