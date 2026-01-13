@@ -1,4 +1,6 @@
-# Exit on Error
+# bash
+
+## Exit on Error
 
 ```shell
 set -e
