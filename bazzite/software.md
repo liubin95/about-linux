@@ -25,3 +25,12 @@
 > 很多 --cask 的软件无法使用
 
 ### rpm-ostree（不推荐）
+
+```shell
+rpm-ostree install weixin.rpm
+```
+
+## 常用软件
+
+- weixin(<https://linux.weixin.qq.com/>)
+- office(<https://flathub.org/zh-Hans/apps/org.libreoffice.LibreOffice>)
