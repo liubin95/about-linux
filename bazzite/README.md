@@ -9,6 +9,25 @@
 - [github](https://github.com/ublue-os/bazzite)
 - [docs](https://docs.bazzite.gg/)
 
-## [修改分辨率](https://docs.bazzite.gg/Advanced/custom_resolution/)
+## 概念
 
-- `custom-resolution-helper`
+### 基于 Fedora
+>
+> 它以社区驱动、更新快速、创新性强为特色，是新技术进入 RHEL（Red Hat Enterprise Linux） 之前的上游测试平台。
+>
+### Atomic
+>
+> 指系统更新的原子性（Atomicity），即系统升级以“整体”为单位，非全即无。
+>
+### 桌面环境
+
+- GNOME
+- KDE
+
+## 操作系统镜像选择
+>
+> 组合
+
+- Deck/Desktop 操作系统类型
+- amd/nvidia/nvidia-open 显卡类型（新显卡带open）
+- KDE/GNOME 桌面环境

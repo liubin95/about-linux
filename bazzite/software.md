@@ -21,5 +21,7 @@
 > 图形应用程序。它是 Bazzite 上安装应用程序的主要方式 （ Bazzite Portal 中提供的少量软件或通过 ujust 命令安装的软件除外），建议在条件允许的情况下，大多数软件都应使用 Flatpak 格式而非其他格式。
 
 ### Homebrew
+>
+> 很多 --cask 的软件无法使用
 
 ### rpm-ostree（不推荐）
