@@ -1,29 +1,5 @@
 # Linux
 
-## cpu
-
-### 限定任务cpu使用率
-
-* 避免某些任务把资源消耗完
-* [使用 nice、cpulimit 和 cgroups 限制 cpu 占用率](https://www.linuxidc.com/Linux/2015-01/112382.htm)
-
-#### 长久任务
-
-* cgroups 命令集
-* [Linux资源管理之cgroups简介](https://tech.meituan.com/2015/03/31/cgroups.html)
-
-> 功能最为强大地控制组（cgroups）的用法。
-> cgroups 是 Linux 内核提供的一种机制，利用它可以指定一组进程的资源分配。
-> 具体来说，使用 cgroups，用户能够限定一组进程的 cpu 占用率、系统内存消耗、网络带宽，以及这几种资源的组合。
-> cgroups 的优势在于它可以控制一组进程，不像前者仅能控制单进程。而 cgroups 则可以限制其他进程资源的使用。
-> 就拿 CoreOS 作为例子，这是一个专为大规模服务器部署而设计的最简化的 Linux 发行版本，它的 upgrade 进程就是使用 cgroups
-> 来管控。这样，系统在下载和安装升级版本时也不会影响到系统的性能。
-
-```shell
-sudo cgcreate -g cpu:/cpulimited
-sudo cgcreate -g cpu:/lesscpulimited
-```
-
 ## 文件和文件夹
 
 ### 万物都是文件
@@ -65,72 +41,7 @@ sudo cgcreate -g cpu:/lesscpulimited
 
 ![](./image/root-dir.png)
 
-## 正则和文件处理
-
-### 正则表达式
-
-[在线工具](https://c.runoob.com/front-end/854/)
-
-### printf
-
-```shell
-#选项与参数：
-#关于格式方面的几个特殊样式：
-#       \a 警告声音输出
-#       \b 倒退键(backspace)
-#       \f 清除萤幕(form feed)
-#       \n 输出新的一行
-#       \r 亦即Enter 按键
-#       \t 水平的[tab] 按键
-#       \v 垂直的[tab] 按键
-#       \xNN NN 为两位数的数字，可以转换数字成为字元。
-#关于C 程式语言内，常见的变数格式
-#       %ns 那个n 是数字， s 代表string ，亦即多少个字元；
-#       %ni 那个n 是数字， i 代表integer ，亦即多少整数位数；
-#       %N.nf 那个n 与N 都是数字， f 代表floating (浮点)，如果有小数位数，
-#             假设我共要十个位数，但小数点有两位，即为%10.2f 啰！
-printf '%10s %5i %5i %5i %8.2f \n' $(
-  cat printf.txt
-  | grep -v Name
-)
-# 上面的格式共分为五个栏位，
-# %10s 代表的是一个长度为10 个字元的字串栏位，
-# %5i 代表的是长度为5 个字元的数字栏位，
-# 至于那个%8.2f 则代表长度为8 个字元的具有小数点的栏位，其中小数点有两个字元宽度。
-```
-
-### diff
-
-```shell
-# diff file1 file2
-#-b ：忽略一行当中，仅有多个空白的差异(例如"about me" 与"about me" 视为相同
-#-B ：忽略空白行的差异。
-#-i ：忽略大小写的不同。
-diff passwd.old passwd.new
-#4d3    <==左边第四行被删除(d) 掉了，基准是右边的第三行
-#< # Note that this file is consulted directly only when the system is running  <==这边列出左边(<)档案被删除的那一行内容
-#6c5   <==左边第六行被改变(c) 了，基准是右边的第五行
-#< # Open Directory.  <==这边列出左边(<)档案被改变的那一行内容
-#---
-#> new line <==这边列出右边(>)档案被改变的那一行内容
-```
-
-### patch
-
-```shell
-#『将旧的档案升级成为新的档案』时，应该要怎么做呢？其实也不难啦！就是『先比较先旧版本的差异，并将差异档制作成为补丁档，再由补丁档更新旧档案』即可。
-# 选项与参数：
-# -p ：后面可以接『取消几层目录』的意思。
-# -R ：代表还原，将新的档案还原成原来旧的版本。
-# 导出差异文件
-diff -Naur regular_express.txt.old regular_express.txt >txt.patch
-# 升级
-patch -p0 <txt.patch
-# 还原
-patch -p0 -R <txt.patch
-```
-
-## shell /bash
+## bash
 
 ### 常用命令
 
@@ -182,8 +93,8 @@ history
 * `source` 读取并执行文件内容
 
 ```shell
-source ~/.bashrc
-. ~/.bashrc
+source .bashrc
+. .bashrc
 ```
 
 ### 资源限制 ulimit
@@ -604,20 +515,6 @@ exit 0
 # sh -x scriptname # 执行脚本并打印出每一行的命令 debug
 # sh -n scriptname # 检查脚本的语法是否正确
 # sh -v scriptname # 执行脚本并打印出每一行的命令 
-```
-
-## 程序管理
-
-> 触发任何一个事件时，系统都会将他定义成为一个程序，并且给予这个程序一个 ID ，称为PID，同时依据启发这个程序的使用者与相关属性关系，给予这个PID
-> 一组有效的权限设定。
-
-### 程序 program
-
-> 硬盘中的程序，例如 nginx
-
-```shell
-# 查找nginx
-whereis nginx
 ```
 
 ## 多人多工
