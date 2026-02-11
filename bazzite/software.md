@@ -32,5 +32,6 @@ rpm-ostree install weixin.rpm
 
 ## 常用软件
 
-- weixin(<https://linux.weixin.qq.com/>)
-- office(<https://flathub.org/zh-Hans/apps/org.libreoffice.LibreOffice>)
+- weixin Flatpak
+- LibreOffice Flatpak
+- chrome Flatpak
