@@ -21,3 +21,18 @@
 sudo cgcreate -g cpu:/cpulimited
 sudo cgcreate -g cpu:/lesscpulimited
 ```
+
+## [hyperfine](https://github.com/sharkdp/hyperfine)
+
+> 基准测试
+
+```sh
+# 两个命令对比
+hyperfine 'ls' 'ls -alh'
+#ls ran
+#2.01 ± 1.10 times faster than ls -alh
+hyperfine 'du -h -d 3 / 2>/dev/null | sort -rh | head -n 10' 'dust -P -R -p -r -d 3 -n 10 / 2>/dev/null' 
+#对于执行大量磁盘 I/O 的程序，基准测试结果会受到磁盘缓存（冷缓存或热缓存）的严重影响。
+#可以使用 -w / --warmup 选项在实际基准测试之前执行一定次数的程序执行：
+hyperfine --warmup 3 'grep -R TODO *'
+```
