@@ -50,9 +50,8 @@ function setup() {
 #######################################
 function main() {
   setup
-  declare script_dir
   # 脚本目录
-  script_dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+  declare -r script_dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
   # 导出一些公共变量
   export data_dir="$script_dir/data"
 
